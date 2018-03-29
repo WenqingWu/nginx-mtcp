@@ -108,7 +108,7 @@
 
 2.multi-process模式的运行方法
 
-  进入安装目录install-dir/，根据需要，调整mtcp_master.conf、mtcp_slave.conf (新版本mTCP中master和slave进程使用相同的配置文件mtcp_multiprocess.conf,可以从)以及conf/nginx.conf的配置参数,运行可执行二进制文件sbin/nginx，如
+  进入安装目录install-dir/，根据需要，调整mtcp_master.conf、mtcp_slave.conf (新版本mTCP中master和slave进程使用相同的配置文件mtcp_multiprocess.conf,可以参看[https://github.com/eunyoung14/mtcp/tree/master/apps/example])以及conf/nginx.conf的配置参数,运行可执行二进制文件sbin/nginx，如
  
      # ./sbin/nginx -n 4 -r 0 
        for i in {1..3}
