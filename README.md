@@ -5,6 +5,8 @@
 
 ## 物理环境部署
 
+这里默认是x86_x64架构的系统
+
 ### 直连方式
 
 1.接口直连
@@ -71,7 +73,7 @@
 
 (2)进入Nginx目录，编译安装服务器软件
 
-    a)# ./configure --prefix=$<path_to_mtcp_release>/apps/nginx-xxx/install-dir --with-mtcp<path to mtcp release>/
+    a)# ./configure --prefix=$<path_to_mtcp_release>/apps/nginx-xxx/install-dir --with-mtcp=<path to mtcp release>/
     b)# make
     c)# make install
 
@@ -95,7 +97,7 @@
     b)编辑配置文件nginx.conf
 
   注意：
-       以上三步操作可以直接运行自己写的shell脚本setting.sh完成(nginx-xxx/config-tmp/ 目录下是自己根据nginx运行要求，给出的配置文件和软件运行脚本的样例)
+       nginx-xxx/config-sample/ 目录下是自己根据nginx运行要求，给出的配置文件和软件运行脚本的样例
 
 ### 运行服务器软件
 
@@ -108,7 +110,7 @@
 
 2.multi-process模式的运行方法
 
-  进入安装目录install-dir/，根据需要，调整mtcp_master.conf、mtcp_slave.conf (新版本mTCP中master和slave进程使用相同的配置文件mtcp_multiprocess.conf,可以参看 [https://github.com/eunyoung14/mtcp/tree/master/apps/example]  )以及conf/nginx.conf的配置参数,运行可执行二进制文件sbin/nginx，如
+  进入安装目录install-dir/，根据需要，调整mtcp_master.conf、mtcp_slave.conf (新版本mTCP中master和slave进程使用相同的配置文件mtcp-multiprocess.conf,可以参看 https://github.com/eunyoung14/mtcp/tree/master/apps/example )以及conf/nginx.conf的配置参数,运行可执行二进制文件sbin/nginx，如
  
      # ./sbin/nginx -n 4 -r 0 
        for i in {1..3}
