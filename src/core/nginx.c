@@ -197,7 +197,7 @@ main(int argc, char *const *argv)
     ngx_conf_dump_t  *cd;
     ngx_core_conf_t  *ccf;
 
-    /*------------- FLAG -----------------*/
+    /*------------- FLAG modified-----------------*/
     //int                 j;
     int                 ret;
     struct mtcp_conf    mcfg;
@@ -205,7 +205,7 @@ main(int argc, char *const *argv)
     cpus = 1;
     cpu = 0;
     flag = 0;
-    /*------------------------------------*/
+    /*--------------------------------------------*/
 
     ngx_debug_init();
 
@@ -286,7 +286,7 @@ main(int argc, char *const *argv)
     if (ngx_preinit_modules() != NGX_OK) {
         return 1;
     }
-/*----------------------FLAG--------------------------------*/
+    /*----------------------FLAG--------------------------------*/
     /*
      * initialize  mTCP environment
      */
@@ -297,12 +297,14 @@ main(int argc, char *const *argv)
     if(!flag) 
         ret = mtcp_init("mtcp.conf");
     else {
+        /* old version mTCP */
         /*
         if(cpu == 0)
             ret = mtcp_init("mtcp-master.conf");
         else
             ret = mtcp_init("mtcp-slave.conf");
         */
+        /* new version */
         ret = mtcp_init("mtcp-multiprocess");
     }
 	if(ret) {
@@ -465,7 +467,7 @@ ngx_show_version_info(void)
             "  -V            : show version and configure options then exit"
                                NGX_LINEFEED
             "  -t            : test configuration and exit" NGX_LINEFEED
-     /*****************FLAG******************/
+            /*****************FLAG******************/
 			"  -n            : number of cores" NGX_LINEFEED
             "  -T            : test configuration, dump it and exit"
                                NGX_LINEFEED
@@ -1655,7 +1657,7 @@ get_num_cpu(const char *strnum)
 {
 	return strtol((const char*)strnum, (char **) NULL, 10);
 }
-/*自己添加的，现为多余*/
+/*self code, in no use now*/
 
 static void
 signal_handler(int sig) {
