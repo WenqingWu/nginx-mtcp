@@ -26,6 +26,7 @@
 ### DPDK编译部署
 
 以dpdk-16.11为例，这里使用dpdk自带脚本
+（在更新的mTCP（使用DPDK17.08）环境下测试通过）
 
 (1)运行dpdk-setup.sh
 
