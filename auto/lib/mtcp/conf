@@ -1,0 +1,24 @@
+if [ $MTCP != NONE ]; then
+    CORE_INCS="$CORE_INCS $MTCP/mtcp/include $MTCP/dpdk/include"
+    CFLAGS="$CFLAGS -march=native -DRTE_MACHINE_CPUFLAG_SSE -DRTE_MACHINE_CPUFLAG_SSE2 -DRTE_MACHINE_CPUFLAG_SSE3 -DRTE_MACHINE_CPUFLAG_SSSE3 -DRTE_MACHINE_CPUFLAG_SSE4_1 -DRTE_MACHINE_CPUFLAG_SSE4_2 -DRTE_MACHINE_CPUFLAG_AES -DRTE_MACHINE_CPUFLAG_PCLMULQDQ -DRTE_MACHINE_CPUFLAG_AVX -DRTE_COMPILE_TIME_CPUFLAGS=RTE_CPUFLAG_SSE,RTE_CPUFLAG_SSE2,RTE_CPUFLAG_SSE3,RTE_CPUFLAG_SSSE3,RTE_CPUFLAG_SSE4_1,RTE_CPUFLAG_SSE4_2,RTE_CPUFLAG_AES,RTE_CPUFLAG_PCLMULQDQ,RTE_CPUFLAG_AVX"
+    CFLAGS="$CFLAGS -include $MTCP/dpdk/include/rte_config.h"
+
+
+    LINK_DEPS="$LINK_DEPS $MTCP/mtcp/lib/libmtcp.a"
+
+    ngx_feature="mTCP library"
+    ngx_feature_name="NGX_MTCP"
+    ngx_feature_run=no
+    ngx_feature_incs="#include <mtcp_api.h>"
+    ngx_feature_path="$MTCP/mtcp/include"
+    ngx_feature_libs="$MTCP/mtcp/lib/libmtcp.a"
+    ngx_feature_test="struct mtcp_conf conf;"
+
+	CORE_LIBS="$CORE_LIBS -L${MTCP}/dpdk/lib -L${MTCP}/mtcp/lib -lrt -march=native -m64 -g -O3 -Wl,-whole-archive -Wl,-ldpdk -Wl,--start-group -Wl,-lrt -Wl,-lm -Wl,-ldl -Wl,-lnuma -Wl,--end-group -Wl,-lmtcp -Wl,--no-whole-archive"
+#    CORE_LIBS="$CORE_LIBS -m64 -g -O3 -lpthread -lrt -march=native -L${MTCP}/dpdk/lib -L${MTCP}/mtcp/lib -lintel_dpdk -lnuma -lmtcp -lm -ldl"
+#    CORE_LIBS="$CORE_LIBS -m64 -g -O3 -lpthread -lrt -march=native -Wl,-export-dynamic -L${MTCP}/dpdk/lib -L${MTCP}/mtcp/lib -Wl,-lnuma -Wl,-lpthread -Wl,-lrt -Wl,-ldl -Wl,--whole-archive -Wl,-lrte_distributor -Wl,-lrte_kni -Wl,-lrte_pipeline -Wl,-lrte_table -Wl,-lrte_port -Wl,-lrte_timer -Wl,-lrte_hash -Wl,-lrte_lpm -Wl,-lrte_power -Wl,-lrte_acl -Wl,-lrte_meter -Wl,-lrte_sched -Wl,-lm -Wl,-lrt -Wl,-lmtcp -Wl,--start-group -Wl,-lrte_kvargs -Wl,-lrte_mbuf -Wl,-lrte_ip_frag -Wl,-lethdev -Wl,-lrte_malloc -Wl,-lrte_mempool -Wl,-lrte_ring -Wl,-lrte_eal -Wl,-lrte_cmdline -Wl,-lrte_cfgfile -Wl,-lrte_pmd_bond  -Wl,-lrte_pmd_i40e -Wl,-lrte_pmd_ixgbe -Wl,-lrte_pmd_e1000 -Wl,-lrte_pmd_ring -Wl,-lrt -Wl,-lm -Wl,-ldl -Wl,--end-group -Wl,--no-whole-archive"
+	
+    . auto/feature
+
+fi
+
