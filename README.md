@@ -82,7 +82,7 @@
 (1)添加mTCP配置文件
 
     # cp $<path_to_mtcp_release>/config/sample-mtcp.conf mtcp.conf
-    （若采用多进程模式，还需要添加mtcp_master.conf和mtcp_slave.conf）
+    （若采用多进程模式，需要采用多进程版本的mtcp配置文件：mtcp-multiprocess.conf）
 
 (2)添加路由和ARP配置
 
@@ -96,8 +96,8 @@
     a)# cd conf/
     b)编辑配置文件nginx.conf
 
-  注意：
-       nginx-xxx/config-sample/ 目录下是自己根据nginx运行要求，给出的配置文件和软件运行脚本的样例
+  注：
+       nginx-xxx/config-sample/ 下是根据nginx-mtco运行环境给出的配置文件和软件运行脚本的样例
 
 ### 运行服务器软件
 
@@ -110,7 +110,7 @@
 
 2.multi-process模式的运行方法
 
-  进入安装目录install-dir/，根据需要，调整mtcp_master.conf、mtcp_slave.conf (新版本mTCP中master和slave进程使用相同的配置文件mtcp-multiprocess.conf,可以参看 https://github.com/eunyoung14/mtcp/tree/master/apps/example )以及conf/nginx.conf的配置参数,运行可执行二进制文件sbin/nginx，如
+  进入安装目录install-dir/，根据需要，修改mtcp-multiprocess.conf(新版本mTCP中master和slave进程使用相同的配置文件mtcp-multiprocess.conf,可以参看 https://github.com/eunyoung14/mtcp/ 中的示例程序)以及conf/nginx.conf的配置参数,运行可执行二进制文件sbin/nginx，如
  
      # ./sbin/nginx -n 4 -r 0 
        for i in {1..3}
